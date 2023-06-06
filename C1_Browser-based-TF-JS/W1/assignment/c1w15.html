@@ -47,7 +47,7 @@
             model.compile({
                 loss: 'binaryCrossentropy',
                 optimizer: tf.train.rmsprop(0.00001),
-                metrics: ['accuracy']
+                metrics: ['accuracy',]
             });
             
             await model.fitDataset(convertedTrainingData, 
