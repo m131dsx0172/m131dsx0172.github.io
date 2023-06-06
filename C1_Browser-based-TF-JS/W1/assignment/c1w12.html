@@ -46,7 +46,7 @@
             // the rmsprop optimizer, and accuracy for your metrics. 
             model.compile({
                 loss: 'binaryCrossentropy',
-                optimizer: tf.train.rmsprop(0.001),
+                optimizer: tf.train.rmsprop(0.00001),
                 metrics: ['accuracy']
             });
             
