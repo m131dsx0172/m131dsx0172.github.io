@@ -4,7 +4,7 @@
     <script lang="js">
         
         async function run(){
-            const trainingUrl = 'wdbc-train.csv';
+            const trainingUrl = 'https://m131dsx0172.github.io/C1_Browser-based-TF-JS/W1/assignment/wdbc-train.csv';
             
             const trainingData = tf.data.csv(trainingUrl, {
                 columnConfigs: {
@@ -19,7 +19,7 @@
                 return { xs: Object.values(xs), ys: Object.values(labels)};
             }).batch(1);
                   
-            const testingUrl = 'wdbc-test.csv';
+            const testingUrl = 'https://m131dsx0172.github.io/C1_Browser-based-TF-JS/W1/assignment/wdbc-test.csv';
             
             const testingData = tf.data.csv(testingUrl, {
                 columnConfigs: {
