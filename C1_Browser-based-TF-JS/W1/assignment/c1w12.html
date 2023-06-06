@@ -42,7 +42,7 @@
 			model.add(tf.layers.dense({activation: 'relu', units: 4}));
             model.add(tf.layers.dense({activation: 'sigmoid', units: 1}));
 
-            model.compile({loss: 'binaryCrossentropy', optimizer: tf.train.rmsprop(0.0000005), metrics: ['accuracy']});
+            model.compile({loss: 'binaryCrossentropy', optimizer: 'rmsprop', metrics: ['accuracy']});
             
             await model.fitDataset(convertedTrainingData, 
                              {epochs:50,
