@@ -37,8 +37,9 @@
             const numOfFeatures = (await trainingData.columnNames()).length - 1;
             
             const model = tf.sequential();
-            model.add(tf.layers.dense({inputShape: [numOfFeatures], activation: 'relu', units: 10}));
-			model.add(tf.layers.dense({activation: 'relu', units: 5}));
+            model.add(tf.layers.dense({inputShape: [numOfFeatures], activation: 'relu', units: 16}));
+			model.add(tf.layers.dense({activation: 'relu', units: 8}));
+			model.add(tf.layers.dense({activation: 'relu', units: 4}));
             model.add(tf.layers.dense({activation: 'sigmoid', units: 1}));
 
             model.compile({loss: 'binaryCrossentropy', optimizer: tf.train.rmsprop(0.0000001), metrics: ['accuracy']});
