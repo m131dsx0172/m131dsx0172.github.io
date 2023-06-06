@@ -38,8 +38,8 @@
             
             const model = tf.sequential();
             
-            model.add(tf.layers.dense({inputShape: [numOfFeatures], units: 32, activation: 'relu'}));
-            model.add(tf.layers.dense({units: 64, activation: 'relu'}));
+            model.add(tf.layers.dense({inputShape: [numOfFeatures], units: 32, activation: 'sigmoid'}));
+            model.add(tf.layers.dense({units: 64, activation: 'sigmoid'}));
             model.add(tf.layers.dense({units: 1, activation: 'sigmoid'}));
 
             // Compile the model using the binaryCrossentropy loss, 
