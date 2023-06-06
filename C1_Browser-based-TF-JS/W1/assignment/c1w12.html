@@ -17,7 +17,7 @@
             const convertedTrainingData = trainingData.map(({xs, ys}) => {
                 const labels = [ys.diagnosis === 'M' ? 1 : 0];
                 return { xs: Object.values(xs), ys: Object.values(labels)};
-            }).batch(1);
+            }).batch(10);
                   
             const testingUrl = 'https://m131dsx0172.github.io/C1_Browser-based-TF-JS/W1/assignment/wdbc-test.csv';
             
@@ -32,7 +32,7 @@
             const convertedTestingData = testingData.map(({xs, ys}) => {
                 const labels = [ys.diagnosis === 'M' ? 1 : 0];
                 return { xs: Object.values(xs), ys: Object.values(labels)};
-            }).batch(1);
+            }).batch(10);
 
             const numOfFeatures = (await trainingData.columnNames()).length - 1;
             
