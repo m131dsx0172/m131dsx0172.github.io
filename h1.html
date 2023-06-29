@@ -1,0 +1,54 @@
+<html>
+<head></head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3"></script>
+    <script lang="js">
+
+        async function run(){
+            const trainingUrl = 'wdbc-train.csv';
+
+            const trainingData = tf.data.csv(trainingUrl, {
+                columnConfigs: {
+                    diagnosis: {
+                        isLabel: true
+                    }
+                }
+            });
+
+            const convertedTrainingData = await trainingData.toArray();
+
+            const testingUrl = 'wdbc-test.csv';
+
+            const testingData = tf.data.csv(testingUrl, {
+                columnConfigs: {
+                    diagnosis: {
+                        isLabel: true
+                    }
+                }
+            });
+
+            const convertedTestingData = await testingData.toArray();
+
+            const numOfFeatures = convertedTrainingData[0].xs.length;
+
+            const model = tf.sequential();
+            model.add(tf.layers.dense({units: 16, activation: 'relu', inputShape: [numOfFeatures]}));
+            model.add(tf.layers.dense({units: 8, activation: 'relu'}));
+            model.add(tf.layers.dense({units: 1, activation: 'sigmoid'}));
+
+            model.compile({loss: 'binaryCrossentropy', optimizer: 'rmsprop', metrics: ['accuracy']});
+
+            await model.fitDataset(convertedTrainingData,
+                             {epochs:100,
+                              validationData: convertedTestingData,
+                              callbacks:{
+                                  onEpochEnd: async(epoch, logs) =>{
+                                      console.log("Epoch: " + epoch + " Loss: " + logs.loss + " Accuracy: " + logs.acc);
+                                  }
+                              }});
+            await model.save('downloads://my_model');
+        }
+        run();
+    </script>
+<body>
+</body>
+</html>
